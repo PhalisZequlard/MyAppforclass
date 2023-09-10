@@ -12,3 +12,10 @@
 /Users/penguincovered/MyApp/MyApp/obj/Debug/net7.0/MyApp.pdb
 /Users/penguincovered/MyApp/MyApp/obj/Debug/net7.0/MyApp.genruntimeconfig.cache
 /Users/penguincovered/MyApp/MyApp/obj/Debug/net7.0/ref/MyApp.dll
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.AssemblyInfoInputs.cache
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.AssemblyInfo.cs
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.csproj.CoreCompileInputs.cache
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.dll
+/Users/penguincovered/MyApp/obj/Debug/net7.0/refint/MyApp.dll
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.pdb

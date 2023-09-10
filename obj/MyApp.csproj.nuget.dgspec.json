@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/penguincovered/MyApp/MyApp/MyApp.csproj": {}
+    "/Users/penguincovered/MyApp/MyApp.csproj": {}
   },
   "projects": {
-    "/Users/penguincovered/MyApp/MyApp/MyApp.csproj": {
+    "/Users/penguincovered/MyApp/MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/penguincovered/MyApp/MyApp/MyApp.csproj",
+        "projectUniqueName": "/Users/penguincovered/MyApp/MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "/Users/penguincovered/MyApp/MyApp/MyApp.csproj",
+        "projectPath": "/Users/penguincovered/MyApp/MyApp.csproj",
         "packagesPath": "/Users/penguincovered/.nuget/packages/",
-        "outputPath": "/Users/penguincovered/MyApp/MyApp/obj/",
+        "outputPath": "/Users/penguincovered/MyApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/penguincovered/.nuget/NuGet/NuGet.Config"
