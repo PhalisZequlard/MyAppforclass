@@ -24,8 +24,13 @@
 // Console.WriteLine($"[{trimmedGreeting}]");
 
 
-string sayHello = "Hello lllllll!";
-Console.WriteLine(sayHello);
+// string sayHello = "Hello lllllll!";
+// Console.WriteLine(sayHello);
 
-sayHello = sayHello.Replace("Hello", "Greetings");
-Console.WriteLine(sayHello);
+// sayHello = sayHello.Replace("Hello", "Greetings");
+// Console.WriteLine(sayHello);
+
+
+string songLyrics = "You say goodbye, and I say hello";
+Console.WriteLine(songLyrics.Contains("goodbye"));
+Console.WriteLine(songLyrics.Contains("greetings"));
