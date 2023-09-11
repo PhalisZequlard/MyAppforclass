@@ -1,68 +1,62 @@
-﻿// Console.WriteLine("input a number");
-// int num = Convert.ToInt32(Console.ReadLine());
-// for (int i=1;i<=9;i++) {
-//   for (int j=1;j<=i;j++) {
-//     Console.Write($"{i}x{j}={i*j} ");
-//   }
-//   Console.WriteLine();
-// }
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
-using System.Drawing;
-using System.Reflection.Metadata.Ecma335;
-
-namespace ConsoleAPP1 {
+namespace ConsoleApp1 {
   internal class Program {
     private static void Main(string[] args) {
-      List<Drink> drinks = new List<Drink>();
-      // Drink drink1 = new Drink() { Name = "Coke", Size = 500, Price = 10,};
-      // drinks.Add(drink1);
-      drinks.Add(new Drink() { Name = "Coke", Size = 1, Price = 10,});
-      drinks.Add(new Drink() { Name = "juice", Size = 2, Price = 20,});
-      drinks.Add(new Drink() { Name = "coffee", Size = 3, Price = 30,});
-      drinks.Add(new Drink() { Name = "Coke", Size = 4, Price = 40,});
+      List<Drink> drinks = InitializeDrinks();
+      AddNewDrink(drinks);
+      DisplayDrinks(drinks);
+      OrderDrink(drinks, orders);
     }
-    
+
+    // find by name 
+    private static void OrderDrink(List<Drink> myDrinks, List<OrderItem> myOrders) {
+      Console.WriteLine("Order a drink:");
+      Console.Write("Name: ");
+      string name = Console.ReadLine();
+      Drink drink = myDrinks.Find(d => d.Name == name);
+      if (drink == null) {
+        Console.WriteLine("Drink not found.");
+        return;
+      }
+      Console.Write("Quantity: ");
+      int quantity = int.Parse(Console.ReadLine());
+      OrderItem order = new OrderItem() { Drink = drink, Quantity = quantity };
+      myOrders.Add(order);
+      Console.WriteLine($"Total: {order.Total:C1}");
+    }
+
+    private static List<Drink> InitializeDrinks() {
+      List<Drink> drinks = new List<Drink> {
+        new Drink() { Name = "Coke", Volume = 1, Price = 10,},
+        new Drink() { Name = "juice", Volume = 2, Price = 20,},
+        new Drink() { Name = "coffee", Volume = 3, Price = 30,},
+        new Drink() { Name = "tea", Volume = 4, Price = 40,},
+      };
+      return drinks;
+    }
+
+    private static void DisplayDrinks(List<Drink> drinks) {
+      // for (int i=0;i<drinks.Count;i++) {
+      //   Console.WriteLine($"Name: {drinks[i].Name}, Volume: {drinks[i].Volume}, Price: {drinks[i].Price}");
+      // }
+      Console.WriteLine($"{"Name",-5} {"Volume",-3} {"Price",5}");
+      foreach (Drink drink in drinks) {
+        Console.WriteLine($"Name: {drink.Name,-5}, Volume: {drink.Volume,-3}, Price: {drink.Price,5:C1}");
+      }
+    }
+    private static void AddNewDrink(List<Drink> drinks) {
+      Console.WriteLine("Add a new drink:");
+      Console.Write("Name: ");
+      string name = Console.ReadLine();
+      Console.Write("Volume: ");
+      int volume = int.Parse(Console.ReadLine());
+      Console.Write("Price: ");
+      int price = int.Parse(Console.ReadLine());
+      drinks.Add(new Drink() { Name = name, Volume = volume, Price = price });
+    }
   }
 }
-
-
-
-
-
-
-// See https://aka.ms/new-console-template for more information
-// Console.WriteLine("Hello, World!");
-// string afriend = "YEEET";
-// string bfriend = "YeeEET";
-// Console.WriteLine($"Hello {afriend} and {bfriend}");
-// Console.WriteLine($"frienda: {afriend} has {afriend.Length} characters");
-// Console.WriteLine($"friendb: {bfriend} has {bfriend.Length} characters");
-
-// Console.WriteLine("Hello, World!");
-// string afriend = "YEEET";
-// string bfriend = "YeeEET";
-// Console.WriteLine($"Hello {afriend} and {bfriend}");
-// Console.WriteLine($"frienda: {afriend} has {afriend.Length} characters");
-// Console.WriteLine($"friendb: {bfriend} has {bfriend.Length} characters");
-
-
-// string greeting = "   Hello World!   ";
-// Console.WriteLine($"[{greeting}]");
-// string trimmedGreeting = greeting.TrimStart();
-// Console.WriteLine($"[{trimmedGreeting}]");
-// trimmedGreeting = greeting.TrimEnd();
-// Console.WriteLine($"[{trimmedGreeting}]");
-// trimmedGreeting = greeting.Trim();
-// Console.WriteLine($"[{trimmedGreeting}]");
-
-
-// string sayHello = "Hello lllllll!";
-// Console.WriteLine(sayHello);
-
-// sayHello = sayHello.Replace("Hello", "Greetings");
-// Console.WriteLine(sayHello);
-
-
-// string songLyrics = "You say goodbye, and I say hello";
-// Console.WriteLine(songLyrics.Contains("goodbye"));
-// Console.WriteLine(songLyrics.Contains("greetings"));
