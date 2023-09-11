@@ -19,3 +19,10 @@
 /Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.dll
 /Users/penguincovered/MyApp/obj/Debug/net7.0/refint/MyApp.dll
 /Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.pdb
+/Users/penguincovered/MyApp/bin/Debug/net7.0/MyApp
+/Users/penguincovered/MyApp/bin/Debug/net7.0/MyApp.deps.json
+/Users/penguincovered/MyApp/bin/Debug/net7.0/MyApp.runtimeconfig.json
+/Users/penguincovered/MyApp/bin/Debug/net7.0/MyApp.dll
+/Users/penguincovered/MyApp/bin/Debug/net7.0/MyApp.pdb
+/Users/penguincovered/MyApp/obj/Debug/net7.0/MyApp.genruntimeconfig.cache
+/Users/penguincovered/MyApp/obj/Debug/net7.0/ref/MyApp.dll
