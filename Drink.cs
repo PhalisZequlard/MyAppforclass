@@ -1,7 +1,9 @@
-namespace ConsoleApp1 {
-  internal class Drink {
-    public string Name { get; set; }
-    public int Volume { get; set; }  // 改為 Volume
-    public int Price { get; set; }
-  }
+namespace ConsoleApp1
+{
+    internal class Drink
+    {
+        public String Name { get; set; }
+        public String Size { get; set; }
+        public int Price { get; set; }
+    }
 }

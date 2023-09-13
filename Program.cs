@@ -1,62 +1,126 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
-namespace ConsoleApp1 {
-  internal class Program {
-    private static void Main(string[] args) {
-      List<Drink> drinks = InitializeDrinks();
-      AddNewDrink(drinks);
-      DisplayDrinks(drinks);
-      OrderDrink(drinks, orders);
-    }
+namespace ConsoleApp1
+{
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            List<Drink> drinks = new List<Drink>();
+            List<OrderItem> orders = new List<OrderItem>();
 
-    // find by name 
-    private static void OrderDrink(List<Drink> myDrinks, List<OrderItem> myOrders) {
-      Console.WriteLine("Order a drink:");
-      Console.Write("Name: ");
-      string name = Console.ReadLine();
-      Drink drink = myDrinks.Find(d => d.Name == name);
-      if (drink == null) {
-        Console.WriteLine("Drink not found.");
-        return;
-      }
-      Console.Write("Quantity: ");
-      int quantity = int.Parse(Console.ReadLine());
-      OrderItem order = new OrderItem() { Drink = drink, Quantity = quantity };
-      myOrders.Add(order);
-      Console.WriteLine($"Total: {order.Total:C1}");
-    }
+            //新增飲料品項
+            AddNewDrink(drinks);
 
-    private static List<Drink> InitializeDrinks() {
-      List<Drink> drinks = new List<Drink> {
-        new Drink() { Name = "Coke", Volume = 1, Price = 10,},
-        new Drink() { Name = "juice", Volume = 2, Price = 20,},
-        new Drink() { Name = "coffee", Volume = 3, Price = 30,},
-        new Drink() { Name = "tea", Volume = 4, Price = 40,},
-      };
-      return drinks;
-    }
+            //列出所有飲料品項
+            DisplayDrinkMenu(drinks);
 
-    private static void DisplayDrinks(List<Drink> drinks) {
-      // for (int i=0;i<drinks.Count;i++) {
-      //   Console.WriteLine($"Name: {drinks[i].Name}, Volume: {drinks[i].Volume}, Price: {drinks[i].Price}");
-      // }
-      Console.WriteLine($"{"Name",-5} {"Volume",-3} {"Price",5}");
-      foreach (Drink drink in drinks) {
-        Console.WriteLine($"Name: {drink.Name,-5}, Volume: {drink.Volume,-3}, Price: {drink.Price,5:C1}");
-      }
+            //訂購飲料
+            OrderDrink(drinks, orders);
+
+            //計算售價
+            CalculateAmount(orders);
+
+        }
+
+        private static void CalculateAmount(List<OrderItem> myOrders)
+        {
+            double total = 0.0;
+            string message = "";
+            double sellPrice = 0.0;
+
+            Console.WriteLine("-------------------------------------------------------");
+            foreach(OrderItem orderItem in myOrders) total += orderItem.Subtotal;
+
+            if (total >= 500)
+            {
+                message = "訂購滿500元以上者8折";
+                sellPrice = total * 0.8;
+            }
+            else if (total >= 300)
+            {
+                message = "訂購滿300元以上者85折";
+                sellPrice = total * 0.85;
+            }
+            else if (total >= 200)
+            {
+                message = "訂購滿200元以上者9折";
+                sellPrice = total * 0.9;
+            }
+            else
+            {
+                message = "訂購未滿200元不打折";
+                sellPrice = total;
+            }
+
+            Console.WriteLine($"您總共訂購{myOrders.Count}項飲料，總計{total}元。{message}，總計需付款{sellPrice}元。");
+            Console.WriteLine("-------------------------------------------------------");
+        }
+
+        private static void OrderDrink(List<Drink> myDrinks, List<OrderItem> myOrders)
+        {
+            Console.WriteLine();
+            Console.WriteLine("請開始訂購飲料，按下x鍵離開。");
+            string s;
+            int index, quantity, subtotal;
+            while (true)
+            {
+                Console.Write("請輸入品名編號？ ");
+                s = Console.ReadLine();
+                if (s == "x")
+                {
+                 
+                    Console.WriteLine("謝謝惠顧，歡迎下次再來。");
+                    break;
+                }
+                else index = Convert.ToInt32(s);
+                Drink drink = myDrinks[index];
+
+                Console.Write("請輸入數量？ ");
+                s = Console.ReadLine();
+                if (s == "x")
+                {
+
+                    Console.WriteLine("謝謝惠顧，歡迎下次再來。");
+                    break;
+                }
+                else quantity = Convert.ToInt32(s);
+                subtotal = drink.Price * quantity;
+
+                Console.WriteLine($"您訂購{drink.Name}{drink.Size}{quantity}杯，每杯{drink.Price}元，小計{subtotal}元");
+                myOrders.Add(new OrderItem() { Index = index, Quantity = quantity, Subtotal = subtotal });
+            }
+        }
+
+        private static void DisplayDrinkMenu(List<Drink> myDrinks)
+        {
+            //列出所有飲料品項
+            //for (int i=0; i< drinks.Count; i++)
+            //{
+            //    Console.WriteLine($"{drinks[i].Name} {drinks[i].Size} {drinks[i].Price}");
+            //}
+            Console.WriteLine("飲料清單\n");
+            Console.WriteLine(String.Format("{0,-5}{1,-5}{2,5}{3,7}","編號","品名","大小","價格"));
+            int i = 0;
+            foreach (Drink drink in myDrinks)
+            {
+                Console.WriteLine($"{i,-7}{drink.Name,-8}{drink.Size,-3}{drink.Price,9:C1}");
+                i++;
+            }
+        }
+
+        private static void AddNewDrink(List<Drink> myDrinks)
+        {
+            //新增飲料品項
+            //Drink drink1 = new Drink() { Name = "紅茶", Size = "大杯", Price = 50 };
+            //drinks.Add(drink1);
+            myDrinks.Add(new Drink() { Name = "紅茶", Size = "大杯", Price = 50 });
+            myDrinks.Add(new Drink() { Name = "紅茶", Size = "小杯", Price = 30 });
+            myDrinks.Add(new Drink() { Name = "綠茶", Size = "大杯", Price = 50 });
+            myDrinks.Add(new Drink() { Name = "綠茶", Size = "小杯", Price = 30 });
+            myDrinks.Add(new Drink() { Name = "咖啡", Size = "大杯", Price = 60 });
+            myDrinks.Add(new Drink() { Name = "咖啡", Size = "小杯", Price = 40 });
+        }
     }
-    private static void AddNewDrink(List<Drink> drinks) {
-      Console.WriteLine("Add a new drink:");
-      Console.Write("Name: ");
-      string name = Console.ReadLine();
-      Console.Write("Volume: ");
-      int volume = int.Parse(Console.ReadLine());
-      Console.Write("Price: ");
-      int price = int.Parse(Console.ReadLine());
-      drinks.Add(new Drink() { Name = name, Volume = volume, Price = price });
-    }
-  }
 }
