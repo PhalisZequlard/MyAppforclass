@@ -68,6 +68,11 @@ namespace ConsoleApp1
             {
                 Console.Write("請輸入品名編號？ ");
                 s = Console.ReadLine();
+                if (Convert.ToInt32(s) > 5)
+                {
+                    Console.WriteLine("請輸入正確的品名編號。");
+                    continue;
+                }
                 if (s == "x")
                 {
                  
@@ -115,12 +120,12 @@ namespace ConsoleApp1
             //新增飲料品項
             //Drink drink1 = new Drink() { Name = "紅茶", Size = "大杯", Price = 50 };
             //drinks.Add(drink1);
-            myDrinks.Add(new Drink() { Name = "紅茶", Size = "大杯", Price = 50 });
-            myDrinks.Add(new Drink() { Name = "紅茶", Size = "小杯", Price = 30 });
-            myDrinks.Add(new Drink() { Name = "綠茶", Size = "大杯", Price = 50 });
-            myDrinks.Add(new Drink() { Name = "綠茶", Size = "小杯", Price = 30 });
+            myDrinks.Add(new Drink() { Name = "紅茶", Size = "大杯", Price = 30 });
+            myDrinks.Add(new Drink() { Name = "紅茶", Size = "小杯", Price = 20 });
+            myDrinks.Add(new Drink() { Name = "綠茶", Size = "大杯", Price = 25 });
+            myDrinks.Add(new Drink() { Name = "綠茶", Size = "小杯", Price = 20 });
             myDrinks.Add(new Drink() { Name = "咖啡", Size = "大杯", Price = 60 });
-            myDrinks.Add(new Drink() { Name = "咖啡", Size = "小杯", Price = 40 });
+            myDrinks.Add(new Drink() { Name = "咖啡", Size = "小杯", Price = 50 });
         }
     }
 }
