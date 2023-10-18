@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ConsoleApp1
-{
-    internal class Program
-    {
-        private static void Main(string[] args)
-        {
+namespace ConsoleApp1 {
+    internal class Program {
+        private static void Main(string[] args) {
             List<Drink> drinks = new List<Drink>();
             List<OrderItem> orders = new List<OrderItem>();
 
@@ -24,8 +21,7 @@ namespace ConsoleApp1
 
         }
 
-        private static void CalculateAmount(List<OrderItem> myOrders)
-        {
+        private static void CalculateAmount(List<OrderItem> myOrders) {
             double total = 0.0;
             string message = "";
             double sellPrice = 0.0;
@@ -33,23 +29,19 @@ namespace ConsoleApp1
             Console.WriteLine("-------------------------------------------------------");
             foreach(OrderItem orderItem in myOrders) total += orderItem.Subtotal;
 
-            if (total >= 500)
-            {
+            if (total >= 500) {
                 message = "訂購滿500元以上者8折";
                 sellPrice = total * 0.8;
             }
-            else if (total >= 300)
-            {
+            else if (total >= 300) {
                 message = "訂購滿300元以上者85折";
                 sellPrice = total * 0.85;
             }
-            else if (total >= 200)
-            {
+            else if (total >= 200) {
                 message = "訂購滿200元以上者9折";
                 sellPrice = total * 0.9;
             }
-            else
-            {
+            else {
                 message = "訂購未滿200元不打折";
                 sellPrice = total;
             }
@@ -58,36 +50,41 @@ namespace ConsoleApp1
             Console.WriteLine("-------------------------------------------------------");
         }
 
-        private static void OrderDrink(List<Drink> myDrinks, List<OrderItem> myOrders)
-        {
+        // isNumber() 方法
+        private static bool isNumber(string s) {
+            bool result = true;
+            foreach (char c in s) {
+                if (c < '0' || c > '9') {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        private static void OrderDrink(List<Drink> myDrinks, List<OrderItem> myOrders) {
             Console.WriteLine();
             Console.WriteLine("請開始訂購飲料，按下x鍵離開。");
             string s;
             int index, quantity, subtotal;
-            while (true)
-            {
+            while (true) {
                 Console.Write("請輸入品名編號？ ");
                 s = Console.ReadLine();
-                if (Convert.ToInt32(s) > 5)
-                {
+                if (isNumber(s) == false || s == "" || Convert.ToInt32(s) > 5 || s == "x") {
+                    if (s == "x") {
+                        Console.WriteLine("-1end: 謝謝惠顧，歡迎下次再來。");
+                        break;
+                    }
                     Console.WriteLine("請輸入正確的品名編號。");
                     continue;
-                }
-                if (s == "x")
-                {
-                 
-                    Console.WriteLine("謝謝惠顧，歡迎下次再來。");
-                    break;
                 }
                 else index = Convert.ToInt32(s);
                 Drink drink = myDrinks[index];
 
                 Console.Write("請輸入數量？ ");
                 s = Console.ReadLine();
-                if (s == "x")
-                {
-
-                    Console.WriteLine("謝謝惠顧，歡迎下次再來。");
+                if (s == "x") {
+                    Console.WriteLine("-2end: 謝謝惠顧，歡迎下次再來。");
                     break;
                 }
                 else quantity = Convert.ToInt32(s);
@@ -98,8 +95,7 @@ namespace ConsoleApp1
             }
         }
 
-        private static void DisplayDrinkMenu(List<Drink> myDrinks)
-        {
+        private static void DisplayDrinkMenu(List<Drink> myDrinks) {
             //列出所有飲料品項
             //for (int i=0; i< drinks.Count; i++)
             //{
@@ -108,15 +104,13 @@ namespace ConsoleApp1
             Console.WriteLine("飲料清單\n");
             Console.WriteLine(String.Format("{0,-5}{1,-5}{2,5}{3,7}","編號","品名","大小","價格"));
             int i = 0;
-            foreach (Drink drink in myDrinks)
-            {
+            foreach (Drink drink in myDrinks) {
                 Console.WriteLine($"{i,-7}{drink.Name,-8}{drink.Size,-3}{drink.Price,9:C1}");
                 i++;
             }
         }
 
-        private static void AddNewDrink(List<Drink> myDrinks)
-        {
+        private static void AddNewDrink(List<Drink> myDrinks) {
             //新增飲料品項
             //Drink drink1 = new Drink() { Name = "紅茶", Size = "大杯", Price = 50 };
             //drinks.Add(drink1);
