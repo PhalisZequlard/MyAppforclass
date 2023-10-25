@@ -10,7 +10,7 @@ namespace _2023_WpfApp3
 {
     /// <summary>
     /// Interaction logic for App.xaml
-    /// </summary>
+    /// </summary> jj
     public partial class App : Application
     {
     }
